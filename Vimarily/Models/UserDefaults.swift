@@ -2,7 +2,7 @@ import Foundation
 
 
 extension UserDefaults {
-	static let sharedAppGroup = "group." + (Bundle.main.object(forInfoDictionaryKey: "ParentAppBundleIdentifier") as? String ?? "")
+	static let sharedAppGroup = "group.\(Bundle.main.object(forInfoDictionaryKey: "ParentAppBundleIdentifier") ?? "")"
 	static let INSTANCE = UserDefaults(suiteName: UserDefaults.sharedAppGroup)!
 
 	enum GeneralKeys: String, CaseIterable {

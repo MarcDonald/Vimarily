@@ -31,10 +31,10 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 			case .exampleInputAction:
 				NSLog("Example Input Action")
 			case .none:
-				NSLog("Input not supported " + messageName)
+				NSLog("Input not supported \(messageName)")
 			}
 		} catch {
-			NSLog("Message Received " + error.localizedDescription)
+			NSLog("Message Received \(error.localizedDescription)")
 		}
 	}
 

@@ -42,14 +42,14 @@ struct GeneralView: View {
 				Image("Logo").resizable().scaledToFit().frame(maxHeight: 256).aspectRatio(contentMode: .fit).padding()
 				VStack(alignment: .center, spacing: 16) {
 					Text("Vimarily").font(.title)
-					Text("Status: " + viewModel.extensionStatus).font(.title2)
+					Text("Status: \(viewModel.extensionStatus)").font(.title2)
 					Button(action: viewModel.fetchExtensionStatus) {
 						Text("Refresh Extension Status")
 					}
 					Button(action: viewModel.openSafariExtensionPreferencesClick) {
 						Text("Open Safari Extension Preferences")
 					}
-					Text("Version: " + (appVersion ?? "Unknown")).font(.footnote)
+					Text("Version: \(appVersion ?? "Unknown")").font(.footnote)
 				}
 					.padding()
 			}
