@@ -17,7 +17,7 @@ let shouldOpenLinkHintWithQueue = false;
 // Whether link hint's "open in current/new tab" setting is currently toggled
 let openLinkModeToggle = false;
 // Whether we have added to the page the CSS needed to display link hints.
-const linkHintsCssAdded = false;
+let linkHintsCssAdded = false;
 
 // We need this as a top-level function because our command system doesn't yet support arguments.
 function activateLinkHintsModeToOpenInNewTab() {
@@ -30,7 +30,7 @@ function activateLinkHintsModeWithQueue() {
 
 function activateLinkHintsMode(openInNewTab, withQueue) {
 	if (!linkHintsCssAdded) addCssToPage(linkHintCss); // linkHintCss is declared by vimiumFrontend.js
-	linkHintCssAdded = true;
+	linkHintsCssAdded = true;
 	linkHintsModeActivated = true;
 	setOpenLinkMode(openInNewTab, withQueue);
 	buildLinkHints();
