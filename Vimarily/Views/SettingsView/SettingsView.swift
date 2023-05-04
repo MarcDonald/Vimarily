@@ -2,10 +2,16 @@ import Foundation
 import SwiftUI
 import Combine
 
+let numberFormatter: NumberFormatter = {
+    var nf = NumberFormatter()
+    nf.numberStyle = .decimal
+    nf.allowsFloats = false
+    nf.minimum = 0
+    return nf
+}()
+
 struct SettingsView: View {
 	@ObservedObject private var viewModel: SettingsViewModel
-	@State var isScrollSizeValid = true
-	@State var isScrollDurationValid = true
 
 	init(viewModel: SettingsViewModel) {
 		self.viewModel = viewModel
@@ -16,31 +22,10 @@ struct SettingsView: View {
 			ScrollView {
 				VStack(alignment: .leading, spacing: 16) {
 					Section(header: Text("Scroll").font(.title)) {
-						TextField("Scroll Size", text: Binding(
-							get: { String(viewModel.scrollSize) },
-							set: {
-								guard let parsedValue = Int($0) else {
-									self.isScrollSizeValid = false
-									return
-								}
-								self.isScrollSizeValid = true
-								viewModel.scrollSize = parsedValue
-							}
-						))
-						ErrorText(text: "Invalid Scroll Size - Must be a Number", condition: !isScrollSizeValid)
+                        TextField("Scroll Size", value: $viewModel.scrollSize, formatter: numberFormatter)
+					
+                        TextField("Scroll Duration", value: $viewModel.scrollDuration, formatter: numberFormatter)
 
-						TextField("Scroll Duration", text: Binding(
-							get: { String(viewModel.scrollDuration) },
-							set: {
-								guard let parsedValue = Int($0) else {
-									self.isScrollDurationValid = false
-									return
-								}
-								self.isScrollDurationValid = true
-								viewModel.scrollDuration = parsedValue
-							}
-						))
-						ErrorText(text: "Invalid Scroll Duration - Must be a Number", condition: !isScrollDurationValid)
 
 						Toggle(isOn: $viewModel.smoothScroll, label: { Text("Smooth Scroll") })
 					}

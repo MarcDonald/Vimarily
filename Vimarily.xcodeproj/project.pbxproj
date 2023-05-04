@@ -14,7 +14,6 @@
 		3306C4420B6EEF86538E3C51 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306C8B1951F6AA5DDB09D55 /* UserDefaults.swift */; };
 		3306C6815F6B63463ED59505 /* KeyBindingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306C746646546C49F6BD7BF /* KeyBindingsViewModel.swift */; };
 		3306C6852F586F2B32687159 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306CBEA276E256F4A1922B9 /* SettingsViewModel.swift */; };
-		3306C802F2BFE301BDC3A495 /* ErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306CBA39B7B2560138E3487 /* ErrorText.swift */; };
 		3306C93CC71A8B923B81BC0D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306C652F86CFAB0D3B39D5D /* SettingsView.swift */; };
 		3306C9CB36E11EF48B4D7B49 /* vimarily.spec.js in Sources */ = {isa = PBXBuildFile; fileRef = 3306C2C9ECE7975AF09154BA /* vimarily.spec.js */; };
 		3306CAA21AF06A71019E12CE /* GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306C0A2D14E792D9C8AAE35 /* GeneralView.swift */; };
@@ -96,7 +95,6 @@
 		3306C652F86CFAB0D3B39D5D /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3306C746646546C49F6BD7BF /* KeyBindingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsViewModel.swift; sourceTree = "<group>"; };
 		3306C8B1951F6AA5DDB09D55 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		3306CBA39B7B2560138E3487 /* ErrorText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorText.swift; sourceTree = "<group>"; };
 		3306CBEA276E256F4A1922B9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		3306CD34A53468F058B434BC /* VimarilyExtensionDebug.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = VimarilyExtensionDebug.entitlements; sourceTree = "<group>"; };
 		3306CDEFFFEA5FD65D6A262C /* GeneralViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 				3306CAB3E83870AC70F4B64F /* KeyBindingsView */,
 				3306C3F06279AA8F67E0FC73 /* SettingsView */,
 				3306C19BF2DAD7AFF62D204F /* ReloadReminder.swift */,
-				3306CBA39B7B2560138E3487 /* ErrorText.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -425,7 +422,6 @@
 				3306C93CC71A8B923B81BC0D /* SettingsView.swift in Sources */,
 				3306C6852F586F2B32687159 /* SettingsViewModel.swift in Sources */,
 				3306C160AAEF10C3BFA4E001 /* ReloadReminder.swift in Sources */,
-				3306C802F2BFE301BDC3A495 /* ErrorText.swift in Sources */,
 				3306C0FACC0EA21459A89F74 /* UserDefaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
