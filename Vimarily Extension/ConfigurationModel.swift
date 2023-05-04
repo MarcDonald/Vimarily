@@ -8,10 +8,10 @@ import SafariServices
 class ConfigurationModel: ConfigurationModelProtocol {
 	func getUserSettings() throws -> [String: Any] {
 		var result: [String: Any] = [:]
-		var actionBindings: [String: [String]] = [:]
+		var actionBindings: [String: String] = [:]
 
 		UserDefaults.BindingKeys.allCases.forEach { actionKey in
-			actionBindings[actionKey.rawValue] = SafariExtensionHandler.DEFAULTS_INSTANCE.stringArray(forKey: actionKey.rawValue)
+			actionBindings[actionKey.rawValue] = SafariExtensionHandler.DEFAULTS_INSTANCE.string(forKey: actionKey.rawValue)
 		}
 		result["bindings"] = actionBindings
 

@@ -1,7 +1,7 @@
 import Foundation
 
 class KeyBindingsViewModel: ObservableObject {
-	@Published var actionBindings: [UserDefaults.BindingKeys : [String]]!
+	@Published var actionBindings: [UserDefaults.BindingKeys : String]!
 
 	init() {
 		populate()
@@ -10,7 +10,7 @@ class KeyBindingsViewModel: ObservableObject {
 	func populate() {
 		actionBindings = [:]
 		UserDefaults.BindingKeys.allCases.forEach { actionKey in
-			actionBindings[actionKey] = UserDefaults.INSTANCE.stringArray(forKey: actionKey.rawValue)
+			actionBindings[actionKey] = UserDefaults.INSTANCE.string(forKey: actionKey.rawValue)
 		}
 	}
 

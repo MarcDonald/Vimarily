@@ -14,10 +14,9 @@ struct KeyBindingsView: View {
 				VStack(alignment: .center) {
 					ForEach(UserDefaults.BindingKeys.allCases, id: \.self) { key in
 						TextField(text: Binding(
-							// TODO temp get and set the first index
-							get: { viewModel.actionBindings[key]?[0] ?? "" },
+							get: { viewModel.actionBindings[key] ?? "" },
 							set: {
-								viewModel.actionBindings[key]?[0] = $0
+								viewModel.actionBindings[key] = $0
 							}
 						), label: { Text(key.rawValue) })
 					}

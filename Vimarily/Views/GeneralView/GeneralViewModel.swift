@@ -35,7 +35,7 @@ class GeneralViewModel: ObservableObject {
 		SFSafariApplication.showPreferencesForExtension(
 			withIdentifier: (Bundle.main.bundleIdentifier ?? "") + Constants.extensionIdentifierSuffix) { error in
 			if error != nil {
-				NSLog("Error" + (error?.localizedDescription ?? "Unknown"))
+				NSLog("Error \(error?.localizedDescription ?? "Unknown")")
 			}
 		}
 	}

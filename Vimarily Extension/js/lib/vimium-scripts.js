@@ -26,11 +26,6 @@ HUD = {
 		HUD.displayElement().style.display = '';
 	},
 
-	onUpdateLinkClicked: function (event) {
-		HUD.hideUpgradeNotification();
-		chrome.extension.sendRequest({ handler: 'upgradeNotificationClosed' });
-	},
-
 	hideUpgradeNotification: function (clickEvent) {
 		Tween.fade(HUD.upgradeNotificationElement(), 0, 150, function () {
 			HUD.upgradeNotificationElement().style.display = 'none';

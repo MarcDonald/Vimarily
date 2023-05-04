@@ -29,6 +29,8 @@ class SettingsViewModel: ObservableObject {
 	}
 
 	public func save() {
+        scrollSize = scrollSize ?? 0
+        scrollDuration = scrollDuration ?? 0
 		UserDefaults.INSTANCE.set(excludedUrls, forKey: .generalKey(.excludedUrls))
 		UserDefaults.INSTANCE.set(linkHintCharacters, forKey: .generalKey(.linkHintCharacters))
 		UserDefaults.INSTANCE.set(detectByCursorStyle, forKey: .generalKey(.detectByCursorStyle))

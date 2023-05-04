@@ -2,7 +2,7 @@ import Foundation
 
 
 extension UserDefaults {
-	static let sharedAppGroup = "group." + (Bundle.main.object(forInfoDictionaryKey: "ParentAppBundleIdentifier") as? String ?? "")
+	static let sharedAppGroup = "group.\(Bundle.main.object(forInfoDictionaryKey: "ParentAppBundleIdentifier") ?? "")"
 	static let INSTANCE = UserDefaults(suiteName: UserDefaults.sharedAppGroup)!
 
 	enum GeneralKeys: String, CaseIterable {
@@ -97,25 +97,25 @@ extension UserDefaults {
 	}
 
 	func resetKeyBindings() {
-		set(["f"], forKey: .bindingKey(.hintToggleBinding))
-		set(["shift+f"], forKey: .bindingKey(.newTabHintToggleBinding))
-		set(["k"], forKey: .bindingKey(.scrollUpBinding))
-		set(["j"], forKey: .bindingKey(.scrollDownBinding))
-		set(["h"], forKey: .bindingKey(.scrollLeftBinding))
-		set(["l"], forKey: .bindingKey(.scrollRightBinding))
-		set(["u"], forKey: .bindingKey(.scrollUpHalfPageBinding))
-		set(["d"], forKey: .bindingKey(.scrollDownHalfPageBinding))
-		set(["g g"], forKey: .bindingKey(.goToPageTopBinding))
-		set(["shift+g"], forKey: .bindingKey(.goToPageBottomBinding))
-		set(["g i"], forKey: .bindingKey(.goToFirstInputBinding))
-		set(["shift+j"], forKey: .bindingKey(.goBackBinding))
-		set(["shift+k"], forKey: .bindingKey(.goForwardBinding))
-		set(["r"], forKey: .bindingKey(.reloadBinding))
-		set(["w"], forKey: .bindingKey(.tabBackBinding))
-		set(["q"], forKey: .bindingKey(.tabForwardBinding))
-		set(["x"], forKey: .bindingKey(.closeTabBinding))
-		set(["t"], forKey: .bindingKey(.openTabBinding))
-		set(["y t"], forKey: .bindingKey(.duplicateTabBinding))
-		set(["y y"], forKey: .bindingKey(.copyUrlBinding))
+		set("f", forKey: .bindingKey(.hintToggleBinding))
+		set("shift+f", forKey: .bindingKey(.newTabHintToggleBinding))
+		set("k", forKey: .bindingKey(.scrollUpBinding))
+		set("j", forKey: .bindingKey(.scrollDownBinding))
+		set("h", forKey: .bindingKey(.scrollLeftBinding))
+		set("l", forKey: .bindingKey(.scrollRightBinding))
+		set("u", forKey: .bindingKey(.scrollUpHalfPageBinding))
+		set("d", forKey: .bindingKey(.scrollDownHalfPageBinding))
+		set("g g", forKey: .bindingKey(.goToPageTopBinding))
+		set("shift+g", forKey: .bindingKey(.goToPageBottomBinding))
+		set("g i", forKey: .bindingKey(.goToFirstInputBinding))
+		set("shift+j", forKey: .bindingKey(.goBackBinding))
+		set("shift+k", forKey: .bindingKey(.goForwardBinding))
+		set("r", forKey: .bindingKey(.reloadBinding))
+		set("w", forKey: .bindingKey(.tabBackBinding))
+		set("q", forKey: .bindingKey(.tabForwardBinding))
+		set("x", forKey: .bindingKey(.closeTabBinding))
+		set("t", forKey: .bindingKey(.openTabBinding))
+		set("y t", forKey: .bindingKey(.duplicateTabBinding))
+		set("y y", forKey: .bindingKey(.copyUrlBinding))
 	}
 }

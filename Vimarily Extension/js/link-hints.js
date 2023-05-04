@@ -17,7 +17,7 @@ let shouldOpenLinkHintWithQueue = false;
 // Whether link hint's "open in current/new tab" setting is currently toggled
 let openLinkModeToggle = false;
 // Whether we have added to the page the CSS needed to display link hints.
-const linkHintsCssAdded = false;
+let linkHintsCssAdded = false;
 
 // We need this as a top-level function because our command system doesn't yet support arguments.
 function activateLinkHintsModeToOpenInNewTab() {
@@ -30,7 +30,7 @@ function activateLinkHintsModeWithQueue() {
 
 function activateLinkHintsMode(openInNewTab, withQueue) {
 	if (!linkHintsCssAdded) addCssToPage(linkHintCss); // linkHintCss is declared by vimiumFrontend.js
-	linkHintCssAdded = true;
+	linkHintsCssAdded = true;
 	linkHintsModeActivated = true;
 	setOpenLinkMode(openInNewTab, withQueue);
 	buildLinkHints();
@@ -47,7 +47,6 @@ function setOpenLinkMode(openInNewTab, withQueue) {
  * Builds and displays link hints for every visible clickable item on the page.
  */
 function buildLinkHints() {
-	let i;
 	const visibleElements = getVisibleClickableElements();
 
 	// Initialize the number used to generate the character hints to be as many digits as we need to
@@ -55,13 +54,9 @@ function buildLinkHints() {
 	const digitsNeeded = Math.ceil(
 		logXOfBase(visibleElements.length, settings.linkHintCharacters.length)
 	);
-	let linkHintNumber = 0;
-	for (i = 0; i < visibleElements.length; i++) {
-		hintMarkers.push(
-			createMarkerFor(visibleElements[i], linkHintNumber, digitsNeeded)
-		);
-		linkHintNumber++;
-	}
+	visibleElements.forEach((visibleElement, index) => {
+		hintMarkers.push(createMarkerFor(visibleElement, index, digitsNeeded));
+	});
 	// Note(philc): Append these markers as top level children instead of as child nodes to the link itself,
 	// because some clickable elements cannot contain children, e.g. submit buttons. This has the caveat
 	// that if you scroll the page and the link has position=fixed, the marker will not stay fixed.
@@ -69,8 +64,9 @@ function buildLinkHints() {
 	hintMarkerContainingDiv = document.createElement('div');
 	hintMarkerContainingDiv.id = 'vimiumHintMarkerContainer';
 	hintMarkerContainingDiv.className = 'vimiumReset';
-	for (i = 0; i < hintMarkers.length; i++)
-		hintMarkerContainingDiv.appendChild(hintMarkers[i]);
+	hintMarkers.forEach((hintMarker) => {
+		hintMarkerContainingDiv.appendChild(hintMarker);
+	});
 	document.body.appendChild(hintMarkerContainingDiv);
 }
 
@@ -88,27 +84,14 @@ function getVisibleClickableElements() {
 	const elements = getClickableElements();
 
 	// Get those that are visible too.
-	const visibleElements = [];
-
-	for (let i = 0; i < elements.length; i++) {
-		const element = elements[i];
-
-		const selectedRect = getFirstVisibleRect(element);
-		if (selectedRect) {
-			visibleElements.push(selectedRect);
-		}
-	}
+	const visibleElements = elements.map(getFirstVisibleRect).filter((e) => !!e);
 
 	return visibleElements;
 }
 
 function getClickableElements() {
 	const elements = document.getElementsByTagName('*');
-	const clickableElements = [];
-	for (let i = 0; i < elements.length; i++) {
-		const element = elements[i];
-		if (isClickable(element)) clickableElements.push(element);
-	}
+	const clickableElements = elements.filter(isClickable);
 	return clickableElements;
 }
 
@@ -340,18 +323,18 @@ function isSelectable(element) {
  */
 function highlightLinkMatches(searchString) {
 	const linksMatched = [];
-	for (let i = 0; i < hintMarkers.length; i++) {
-		const linkMarker = hintMarkers[i];
+	hintMarkers.forEach((linkMarker) => {
 		if (linkMarker.getAttribute('hintString').indexOf(searchString) === 0) {
 			if (linkMarker.style.display === 'none') linkMarker.style.display = '';
-			for (let j = 0; j < linkMarker.childNodes.length; j++)
-				linkMarker.childNodes[j].className =
-					j >= searchString.length ? '' : 'matchingCharacter';
+			linkMarker.childNodes.forEach((node, index) => {
+				node.className =
+					index >= searchString.length ? '' : 'matchingCharacter';
+			});
 			linksMatched.push(linkMarker.clickableItem);
 		} else {
 			linkMarker.style.display = 'none';
 		}
-	}
+	});
 	return linksMatched;
 }
 
@@ -415,10 +398,9 @@ function createMarkerFor(link, linkHintNumber, linkHintDigits) {
 	marker.className = 'internalVimiumHintMarker vimiumReset';
 	const innerHTML = [];
 	// Make each hint character a span, so that we can highlight the typed characters as you type them.
-	for (let i = 0; i < hintString.length; i++)
-		innerHTML.push(
-			'<span class="vimiumReset">' + hintString[i].toUpperCase() + '</span>'
-		);
+	hintString.forEach((str) =>
+		innerHTML.push('<span class="vimiumReset">' + str.toUpperCase() + '</span>')
+	);
 	marker.innerHTML = innerHTML.join('');
 	marker.setAttribute('hintString', hintString);
 

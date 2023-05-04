@@ -8,11 +8,7 @@ let animationFrame = null;
 
 function customScrollBy(x, y) {
 	// If smooth scroll is off then use regular scroll
-	if (
-		settings == undefined ||
-		settings.smoothScroll === undefined ||
-		!settings.smoothScroll
-	) {
+	if (settings == undefined || !settings.smoothScroll) {
 		window.scrollBy(x, y);
 		return;
 	}
